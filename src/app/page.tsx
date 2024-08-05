@@ -10,23 +10,16 @@ export default function Home() {
     <main className="min-h-screen w-full bg-teal-50 dark:bg-slate-900">
       <section className="hero h-screen overflow-hidden">
         <div className="relative bg-slate-800 h-screen">
-          {/* <Image
-            className="h-screen max-w-[5616px] w-auto lg:w-screen lg:h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            src={'/greg-rakozy-oMpAz-DN-9I-unsplash.jpg'}
-            alt={'Photo by Greg Rakozy on Unsplash'}
-            width={5616}
-            height={3744}
-          /> */}
           <Image
             className="hidden dark:block h-screen max-w-[5397px] w-auto lg:w-screen lg:h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            src={'/daniel-olah-6KQETG8J-zI-unsplash.jpg'}
+            src={'/images/hero-bg-dark.jpg'}
             alt={'Sand Dune by Daniel Olah on Unsplash'}
             width={5397}
             height={3602}
           />
           <Image
             className="dark:hidden h-screen max-w-[6000px] w-auto lg:w-screen lg:h-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            src={'/mike-yukhtenko-a2kD4b0KK4s-unsplash.jpg'}
+            src={'/images/hero-bg-light.jpg'}
             alt={'Sand Dune by Mike Yukhtenko on Unsplash'}
             width={6000}
             height={4000}
