@@ -1,11 +1,10 @@
-import Image from "next/image";
 import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 import ThemedStaticImage from "@/components/ui/themed-image";
+import Navbar from "@/components/navbar";
 
 import heroBgDark from "../../public/images/hero-bg-dark.jpg";
 import heroBgLight from "../../public/images/hero-bg-light.jpg";
-import { Space } from "lucide-react";
 
 const dune_rise = localFont({
     src: "../../public/font/dune_rise/Dune_Rise.ttf",
@@ -61,6 +60,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+            <Navbar />
             <section className="hero h-screen overflow-hidden"></section>
         </main>
     );
