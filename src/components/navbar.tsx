@@ -10,6 +10,21 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import { socials } from "./footer";
+import { Separator } from "@radix-ui/react-separator";
+
+const links = [
+    {
+        name: "Link",
+        link: "#",
+    },
+    {
+        name: "Link 2",
+        link: "#",
+    },
+];
+
+const firstSocial = socials[0];
 
 export default function Navbar() {
     return (
@@ -20,17 +35,30 @@ export default function Navbar() {
                         <SheetTrigger className="btn btn-square btn-ghost">
                             <Menu />
                         </SheetTrigger>
-                        <SheetContent>
-                            <SheetHeader>
-                                <SheetTitle>
-                                    Are you absolutely sure?
-                                </SheetTitle>
-                                <SheetDescription>
-                                    This action cannot be undone. This will
-                                    permanently delete your account and remove
-                                    your data from our servers.
-                                </SheetDescription>
-                            </SheetHeader>
+                        <SheetContent side={"left"}>
+                            {links.map((link) => (
+                                <Link
+                                    href={link.link}
+                                    key={link.name}
+                                    className="btn btn-ghost w-full text-lg"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                            <Separator />
+                            <h6 className="footer-title">Socials</h6>
+                            {socials.map((social) => (
+                                <Link
+                                    href={social.link}
+                                    key={social.name}
+                                    className="btn btn-ghost w-full text-lg"
+                                >
+                                    <social.logo className="inline-block" />{" "}
+                                    <p className="text-teal-700 dark:text-slate-300">
+                                        {social.name}
+                                    </p>
+                                </Link>
+                            ))}
                         </SheetContent>
                     </Sheet>
                 </div>
@@ -39,15 +67,17 @@ export default function Navbar() {
                 </div>
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
-                        <li className="p-2 hidden md:flex">
-                            <a>Link</a>
-                        </li>
-                        <li className="p-2 hidden md:flex">
-                            <Link
-                                href="https://github.com/yashppawar"
-                                target="_blank"
+                        {links.map((link) => (
+                            <li
+                                className="p-2 hidden md:flex"
+                                key={link.name + "nb"}
                             >
-                                <SiGithub />
+                                <Link href={link.link}>{link.name}</Link>
+                            </li>
+                        ))}
+                        <li className="p-2 hidden md:flex">
+                            <Link href={firstSocial.link} target="_blank">
+                                <firstSocial.logo />
                             </Link>
                         </li>
                         <li className="p-2">

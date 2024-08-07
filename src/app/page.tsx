@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 import ThemedStaticImage from "@/components/ui/themed-image";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 import heroBgDark from "../../public/images/hero-bg-dark.jpg";
 import heroBgLight from "../../public/images/hero-bg-light.jpg";
@@ -62,6 +63,7 @@ export default function Home() {
             </section>
             <Navbar />
             <section className="hero h-screen overflow-hidden"></section>
+            <Footer />
         </main>
     );
 }
