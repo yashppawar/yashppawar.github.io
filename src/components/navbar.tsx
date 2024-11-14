@@ -28,7 +28,7 @@ const firstSocial = socials[0];
 
 export default function Navbar() {
     return (
-        <nav className="sticky top-0 backdrop-blur-md">
+        <nav className="sticky top-0 backdrop-blur-md z-50">
             <div className="navbar max-w-screen-xl m-auto">
                 <div className="flex-none md:hidden">
                     <Sheet>

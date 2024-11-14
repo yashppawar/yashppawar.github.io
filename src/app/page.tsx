@@ -1,15 +1,12 @@
-import localFont from "next/font/local";
+import { dune_rise } from "@/app/fonts";
 import { cn } from "@/lib/utils";
 import ThemedStaticImage from "@/components/ui/themed-image";
-import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { Meteors } from "@/components/ui/metors";
 
 import heroBgDark from "../../public/images/hero-bg-dark.jpg";
 import heroBgLight from "../../public/images/hero-bg-light.jpg";
-
-const dune_rise = localFont({
-    src: "../../public/font/dune_rise/Dune_Rise.ttf",
-});
+import NewNavbar from "../components/newNavbar";
 
 function SpacedLetters({
     text,
@@ -61,8 +58,11 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <Navbar />
-            <section className="hero h-screen overflow-hidden"></section>
+            {/* <Navbar /> */}
+            <NewNavbar/>
+            <section className="hero h-screen overflow-hidden relative">
+                {/* <Meteors number={10} /> */}
+            </section>
             <Footer />
         </main>
     );
