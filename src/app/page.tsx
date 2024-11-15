@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import ThemedStaticImage from "@/components/ui/themed-image";
 import Footer from "@/components/footer";
 import { Meteors } from "@/components/ui/metors";
+import { ChevronsDown } from "lucide-react";
 
 import heroBgDark from "../../public/images/hero-bg-dark.jpg";
 import heroBgLight from "../../public/images/hero-bg-light.jpg";
@@ -27,6 +28,9 @@ function SpacedLetters({
 export default function Home() {
     return (
         <main className="min-h-screen w-full bg-teal-50 dark:bg-slate-900">
+            {/* <Navbar /> */}
+            <NewNavbar/>
+
             <section className="hero h-screen overflow-hidden">
                 <div className="relative bg-slate-800 h-screen">
                     <ThemedStaticImage
@@ -57,9 +61,8 @@ export default function Home() {
                         />
                     </div>
                 </div>
+                <ChevronsDown className="animate-bounce size-8 z-50 stroke-teal-200 absolute bottom-10"/>
             </section>
-            {/* <Navbar /> */}
-            <NewNavbar/>
             <section className="hero h-screen overflow-hidden relative">
                 {/* <Meteors number={10} /> */}
             </section>
