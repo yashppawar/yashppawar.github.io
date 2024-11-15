@@ -29,7 +29,7 @@ export default function Home() {
     return (
         <main className="min-h-screen w-full bg-teal-50 dark:bg-slate-900">
             {/* <Navbar /> */}
-            <NewNavbar/>
+            <NewNavbar />
 
             <section className="hero h-screen overflow-hidden">
                 <div className="relative bg-slate-800 h-screen">
@@ -61,7 +61,7 @@ export default function Home() {
                         />
                     </div>
                 </div>
-                <ChevronsDown className="animate-bounce size-8 z-50 stroke-teal-200 absolute bottom-10"/>
+                <ChevronsDown className="animate-bounce size-8 z-50 stroke-teal-200 absolute bottom-10" />
             </section>
             <section className="hero h-screen overflow-hidden relative">
                 {/* <Meteors number={10} /> */}

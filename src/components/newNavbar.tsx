@@ -4,16 +4,11 @@ import * as React from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
-import { aquatico, dune_rise } from "@/app/fonts";
+import { dune_rise } from "@/app/fonts";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./theme-toggle";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { socials } from "./footer";
 import { Separator } from "./ui/separator";
 
@@ -40,6 +35,8 @@ export default function NewNavbar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     React.useEffect(() => {
+        setIsScrolled(window.scrollY > 50);
+
         const handleScroll = () => {
             // setIsScrolled(true);
             setIsScrolled(window.scrollY > 50);
@@ -50,30 +47,29 @@ export default function NewNavbar() {
 
     return (
         <nav
-            // className={cn(
-            //     "fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl rounded-full transition-all duration-300 z-50 bg-slate-800/70 backdrop-blur-lg shadow-lg"
-            // )}
             className={cn(
-                "fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl rounded-[32px] transition-all duration-300 z-50", dune_rise.className, 
+                "fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl rounded-[32px] transition-all duration-300 z-50",
+                dune_rise.className,
                 isScrolled || isMenuOpen
-                    ? "bg-slate-800/70 backdrop-blur-md shadow-lg"
+                    ? "bg-slate-950/70 dark:bg-slate-800/70 backdrop-blur-md shadow-lg"
                     : "bg-transparent"
             )}
         >
             <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-                <Link href="/" className="text-2xl font-bold text-white flex items-center translate-y-0.5">
+                <Link
+                    href="/"
+                    className="text-2xl font-bold text-white flex items-center translate-y-0.5"
+                >
                     <span>Yash</span>
                     {/* <span className={`${foundation_one.className}`}>Yash</span> */}
                 </Link>
                 <div className={cn("hidden space-x-6 md:flex")}>
-                    {isScrolled && links.map((link) => (
-                        <NavLink href={link.link} key={link.name}>
-                            {link.name}
-                        </NavLink>
-                    ))}
-                    {/* <NavLink href="/cosmos">cosmos</NavLink>
-                    <NavLink href="/accessories">accessories</NavLink>
-                    <NavLink href="/support">support</NavLink> */}
+                    {isScrolled &&
+                        links.map((link) => (
+                            <NavLink href={link.link} key={link.name}>
+                                {link.name}
+                            </NavLink>
+                        ))}
                 </div>
                 <div className="flex items-center space-x-4">
                     {/* {socials.map((social) => (
@@ -146,22 +142,6 @@ export default function NewNavbar() {
                                 {link.name}
                             </NavLink>
                         ))}
-
-                        {/* <NavLink href="/tech-details" className="block py-2">
-                        tech details
-                        </NavLink>
-                        <NavLink href="/cosmos" className="block py-2">
-                        cosmos
-                        </NavLink>
-                        <NavLink href="/accessories" className="block py-2">
-                        accessories
-                        </NavLink>
-                        <NavLink href="/support" className="block py-2">
-                        support
-                    </NavLink>
-                    <NavLink href="/account" className="block py-2">
-                        account
-                    </NavLink> */}
                     </div>
                     <Separator className="bg-slate-600" />
                     <div className="md:hidden px-6 pb-4 pt-2">
@@ -194,11 +174,13 @@ function NavLink({
         <Link
             href={href}
             className={cn(
-                "text-sm font-medium text-white hover:text-gray-200 transition-colors",
+                "text-sm font-medium text-white hover:text-teal-500 group transition-all duration-300 ease-in-out",
                 className
             )}
         >
-            {children}
+            <div className="bg-left-bottom bg-gradient-to-r from-teal-500 to-teal-500 bg-[length:0%_1px] bg-no-repeat group-hover:bg-[length:100%_1px] transition-all duration-500 ease-out">
+                {children}
+            </div>
         </Link>
     );
 }
