@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-import { aquatico } from "@/app/fonts";
+import { aquatico, dune_rise } from "@/app/fonts";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./theme-toggle";
@@ -15,6 +15,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { socials } from "./footer";
+import { Separator } from "./ui/separator";
 
 const links: {
     name: string;
@@ -36,6 +37,7 @@ const links: {
 
 export default function NewNavbar() {
     const [isScrolled, setIsScrolled] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -52,18 +54,18 @@ export default function NewNavbar() {
             //     "fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl rounded-full transition-all duration-300 z-50 bg-slate-800/70 backdrop-blur-lg shadow-lg"
             // )}
             className={cn(
-                "fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl rounded-full transition-all duration-300 z-50",
-                isScrolled
+                "fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl rounded-[32px] transition-all duration-300 z-50", dune_rise.className, 
+                isScrolled || isMenuOpen
                     ? "bg-slate-800/70 backdrop-blur-md shadow-lg"
                     : "bg-transparent"
             )}
         >
             <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-                <Link href="/" className="text-2xl font-bold text-white">
-                    <span className={`${aquatico.className}`}>Yash</span>
+                <Link href="/" className="text-2xl font-bold text-white flex items-center translate-y-0.5">
+                    <span>Yash</span>
                     {/* <span className={`${foundation_one.className}`}>Yash</span> */}
                 </Link>
-                <div className="hidden md:flex space-x-6">
+                <div className={cn("hidden space-x-6 md:flex")}>
                     {isScrolled && links.map((link) => (
                         <NavLink href={link.link} key={link.name}>
                             {link.name}
@@ -77,11 +79,17 @@ export default function NewNavbar() {
                     {/* {socials.map((social) => (
                         <NavLink href={social.link} key={social.name} className="hidden md:inline-block">{social.name}</NavLink>
                     ))} */}
-                    <NavLink href={socials[0].link} key={socials[0].name} className="hidden md:inline-block">{socials[0].name}</NavLink>
+                    <NavLink
+                        href={socials[0].link}
+                        key={socials[0].name}
+                        className="hidden md:inline-block"
+                    >
+                        {socials[0].name}
+                    </NavLink>
                     {/* <NavLink href="https://github.com/yashppawar" className="hidden md:inline-block">
                         account
                     </NavLink> */}
-                    <DropdownMenu>
+                    {/* <DropdownMenu>
                         <DropdownMenuTrigger asChild className="md:hidden">
                             <Button variant="ghost" size="icon">
                                 <Menu className="h-6 w-6" />
@@ -105,12 +113,70 @@ export default function NewNavbar() {
                                 <Link href="/account">account</Link>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
-                    </DropdownMenu>
+                    </DropdownMenu> */}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="md:hidden text-white"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? (
+                            <X className="h-6 w-6" />
+                        ) : (
+                            <Menu className="h-6 w-6" />
+                        )}
+                        <span className="sr-only">Toggle menu</span>
+                    </Button>
                     <Button className="bg-teal-400 text-black rounded-full hover:bg-teal-500">
                         <ThemeToggle />
                     </Button>
                 </div>
             </div>
+
+            {isMenuOpen && (
+                <div>
+                    <Separator className="bg-slate-600" />
+                    <div className="md:hidden px-6 pb-4 pt-2">
+                        {links.map((link) => (
+                            <NavLink
+                                href={link.link}
+                                key={link.name}
+                                className={cn("block py-2")}
+                            >
+                                {link.name}
+                            </NavLink>
+                        ))}
+
+                        {/* <NavLink href="/tech-details" className="block py-2">
+                        tech details
+                        </NavLink>
+                        <NavLink href="/cosmos" className="block py-2">
+                        cosmos
+                        </NavLink>
+                        <NavLink href="/accessories" className="block py-2">
+                        accessories
+                        </NavLink>
+                        <NavLink href="/support" className="block py-2">
+                        support
+                    </NavLink>
+                    <NavLink href="/account" className="block py-2">
+                        account
+                    </NavLink> */}
+                    </div>
+                    <Separator className="bg-slate-600" />
+                    <div className="md:hidden px-6 pb-4 pt-2">
+                        {socials.map((link) => (
+                            <NavLink
+                                href={link.link}
+                                key={link.name}
+                                className={cn("block py-2")}
+                            >
+                                {link.name}
+                            </NavLink>
+                        ))}
+                    </div>
+                </div>
+            )}
         </nav>
     );
 }
